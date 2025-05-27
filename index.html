@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #222222;
+      padding: 20px;
+      margin: 0;
+    }
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+      color: #0066cc;
+    }
+    section, header, footer {
+      background: #f9f9f9;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    input, button {
+      padding: 10px 14px;
+      margin: 6px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    input {
+      background-color: #f0f0f0;
+      color: #222;
+    }
+    button {
+      background-color: #0066cc;
+      color: #fff;
+      cursor: pointer;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apa Itu Trading, Forex, dan Crypto?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.8;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    header, section {
+      background-color: #fff;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #0066cc;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Apa Itu Trading, Forex, dan Crypto?</h1>
+  <p>Pelajari dasar-dasar trading, perbedaan antara Forex dan Crypto, serta bagaimana cara kerjanya dalam dunia keuangan modern.</p>
+</header>
+
+<section>
+  <h2>Apa Itu Trading?</h2>
+  <p>Trading adalah aktivitas jual beli instrumen keuangan seperti saham, mata uang (valuta asing), komoditas, atau aset digital dengan tujuan mendapatkan keuntungan dari perubahan harga. Trader membeli saat harga rendah dan menjual saat harga tinggi. Trading bisa dilakukan secara harian (day trading), jangka pendek (swing trading), atau jangka panjang (position trading).</p>
+  <p>Trading dilakukan di berbagai pasar seperti pasar saham, pasar forex, dan pasar crypto. Untuk melakukan trading, seseorang biasanya menggunakan platform trading online dan menganalisis pasar melalui analisis teknikal dan/atau analisis fundamental.</p>
+</section>
+
+<section>
+  <h2>Apa Itu Forex?</h2>
+  <p>Forex (Foreign Exchange) adalah pasar pertukaran mata uang asing. Di pasar forex, trader memperjualbelikan pasangan mata uang seperti EUR/USD (Euro/Dolar Amerika), GBP/JPY (Poundsterling/Yen Jepang), dan lain-lain. Forex adalah pasar keuangan terbesar di dunia dengan volume transaksi harian lebih dari 7 triliun dolar AS.</p>
+  <p>Keuntungan di pasar forex diperoleh dari selisih harga beli dan jual mata uang. Karena pergerakan harga yang cepat dan likuiditas yang tinggi, pasar forex sangat menarik bagi banyak trader. Namun, risiko kerugiannya juga tinggi, terutama jika menggunakan leverage besar.</p>
+</section>
+
+<section>
+  <h2>Apa Itu Crypto?</h2>
+  <p>Crypto atau cryptocurrency adalah aset digital yang menggunakan kriptografi untuk mengamankan transaksi dan mengontrol penciptaan unit baru. Contoh cryptocurrency paling populer adalah Bitcoin (BTC), Ethereum (ETH), dan Binance Coin (BNB).</p>
+  <p>Trading crypto melibatkan jual beli mata uang digital di exchange crypto seperti Binance, Coinbase, dan Indodax. Tidak seperti forex, pasar crypto berjalan 24 jam nonstop dan tidak terikat oleh lembaga keuangan pusat. Crypto dianggap sebagai teknologi revolusioner karena berjalan di atas sistem blockchain yang terdesentralisasi.</p>
+</section>
+
+<footer>
+  <p style="text-align:center;">&copy; 2025 EduTrading. Semua hak dilindungi.</p>
+</footer>
+
+
+<section>
+  <h2>Kalkulator Profit Trading</h2>
+  <form id="calcForm">
+    Modal: <input type="number" id="modal" required><br>
+    Harga Beli: <input type="number" id="beli" required><br>
+    Harga Jual: <input type="number" id="jual" required><br>
+    <button type="button" onclick="hitungProfit()">Hitung</button>
+  </form>
+  <p id="hasilProfit"></p>
+</section>
+
+<section>
+  <h2>Kuis Crypto Cepat</h2>
+  <p>Apa kepanjangan dari BTC?</p>
+  <input type="text" id="jawaban">
+  <button onclick="cekJawaban()">Cek</button>
+  <p id="hasilKuis"></p>
+</section>
+
+<div id="popup-newsletter">
+  <p>Gabung Newsletter kami</p>
+  <input type="email" id="email" placeholder="Masukkan email"><br>
+  <button onclick="submitEmail()">Submit</button>
+  <button onclick="document.getElementById('popup-newsletter').style.display='none'">Tutup</button>
+</div>
+
+<style>
+  #popup-newsletter {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 20px;
+    border: 1px solid gray;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+</style>
+
+<script>
+  function hitungProfit() {
+    const modal = parseFloat(document.getElementById("modal").value);
+    const beli = parseFloat(document.getElementById("beli").value);
+    const jual = parseFloat(document.getElementById("jual").value);
+    const profit = ((jual - beli) / beli) * modal;
+    document.getElementById("hasilProfit").innerText = "Perkiraan profit: Rp " + profit.toFixed(2);
+  }
+
+  function cekJawaban() {
+    const j = document.getElementById("jawaban").value.toLowerCase();
+    document.getElementById("hasilKuis").innerText =
+      j === "bitcoin" ? "Benar!" : "Salah, coba lagi.";
+  }
+
+  function submitEmail() {
+    const email = document.getElementById("email").value;
+    alert("Email terkirim: " + email);
+  }
+
+  window.onload = function() {
+    setTimeout(() => {
+      document.getElementById('popup-newsletter').style.display = 'block';
+    }, 5000);
+  };
+</script>
+
+
+<section>
+  <h2>Analisis Teknikal: Grafik Harga + Moving Average</h2>
+  <canvas id="btcChart" width="600" height="300"></canvas>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  async function fetchBTCData() {
+    const res = await fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=100');
+    const data = await res.json();
+    const labels = data.map(d => new Date(d[0]).toLocaleTimeString());
+    const prices = data.map(d => parseFloat(d[4])); // close prices
+
+    // Hitung SMA 10
+    const sma10 = [];
+    for (let i = 0; i < prices.length; i++) {
+      if (i < 9) {
+        sma10.push(null);
+      } else {
+        const sum = prices.slice(i - 9, i + 1).reduce((a, b) => a + b, 0);
+        sma10.push((sum / 10).toFixed(2));
+      }
+    }
+
+    const ctx = document.getElementById('btcChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Harga BTC/USDT',
+            data: prices,
+            borderColor: 'blue',
+            fill: false,
+            tension: 0.1
+          },
+          {
+            label: 'SMA 10',
+            data: sma10,
+            borderColor: 'orange',
+            fill: false,
+            tension: 0.1
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: { display: false },
+          y: {
+            beginAtZero: false,
+            ticks: {
+              callback: function(value) {
+                return '$' + value;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  fetchBTCData();
+</script>
+
+
+<section>
+  <h2>Analisis Portofolio Crypto</h2>
+  <form id="portfolioForm">
+    <div id="assetInputs">
+      <div>
+        Aset: <input type="text" name="asset" value="BTC" required>
+        Jumlah: <input type="number" name="amount" value="0.01" required>
+      </div>
+    </div>
+    <button type="button" onclick="addAsset()">Tambah Aset</button>
+    <button type="button" onclick="analyzePortfolio()">Analisis</button>
+  </form>
+  <p id="totalValue"></p>
+  <canvas id="portfolioChart" width="400" height="200"></canvas>
+</section>
+
+<script>
+  async function getPrice(symbol) {
+    const res = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${symbol}USDT`);
+    const data = await res.json();
+    return parseFloat(data.price);
+  }
+
+  function addAsset() {
+    const container = document.getElementById("assetInputs");
+    const div = document.createElement("div");
+    div.innerHTML = 'Aset: <input type="text" name="asset" required> Jumlah: <input type="number" name="amount" required>';
+    container.appendChild(div);
+  }
+
+  async function analyzePortfolio() {
+    const form = document.getElementById("portfolioForm");
+    const assets = Array.from(form.querySelectorAll("input[name='asset']")).map(input => input.value.toUpperCase());
+    const amounts = Array.from(form.querySelectorAll("input[name='amount']")).map(input => parseFloat(input.value));
+
+    const values = [];
+    let total = 0;
+    for (let i = 0; i < assets.length; i++) {
+      try {
+        const price = await getPrice(assets[i]);
+        const value = price * amounts[i];
+        values.push({ label: assets[i], value });
+        total += value;
+      } catch (e) {
+        alert("Gagal ambil harga untuk " + assets[i]);
+        return;
+      }
+    }
+
+    document.getElementById("totalValue").innerText = "Total Nilai Portofolio: $" + total.toFixed(2);
+
+    const ctx = document.getElementById("portfolioChart").getContext("2d");
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: values.map(v => v.label),
+        datasets: [{
+          data: values.map(v => v.value),
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#66BB6A', '#BA68C8']
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+  }
+</script>
+
+
+<section>
+  <h2>Live Chart TradingView: Crypto & Forex</h2>
+  <div class="tradingview-widget-container" style="height:600px;">
+    <div id="tradingview_widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+      new TradingView.widget({
+        "width": "100%",
+        "height": 600,
+        "symbol": "BINANCE:BTCUSDT",
+        "interval": "60",
+        "timezone": "Etc/UTC",
+        "theme": "light",
+        "style": "1",
+        "locale": "id",
+        "toolbar_bg": "#f1f3f6",
+        "enable_publishing": false,
+        "allow_symbol_change": true,
+        "container_id": "tradingview_widget"
+      });
+    </script>
+  </div>
+</section>
+
+
+
+<section>
+  <h2>Live Harga Crypto & Forex</h2>
+  <div style="overflow-x:auto;">
+    <table id="livePriceTable">
+      <thead>
+        <tr>
+          <th>Asset</th>
+          <th>Harga Saat Ini</th>
+          <th>Perubahan 24 Jam</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+  #livePriceTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+  }
+
+  #livePriceTable th, #livePriceTable td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+
+  #livePriceTable th {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+
+  #livePriceTable tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+</style>
+
+
+<script>
+  const cryptoPairs = ["BTCUSDT", "ETHUSDT", "BNBUSDT"];
+  const forexPairs = [
+    {symbol: "USDIDR", base: "USD", target: "IDR"},
+    {symbol: "EURUSD", base: "EUR", target: "USD"},
+    {symbol: "GBPJPY", base: "GBP", target: "JPY"}
+  ];
+
+  async function fetchCryptoPrices() {
+    const res = await fetch("https://api.binance.com/api/v3/ticker/24hr");
+    const data = await res.json();
+    return cryptoPairs.map(pair => {
+      const item = data.find(d => d.symbol === pair);
+      return {
+        asset: pair,
+        price: parseFloat(item.lastPrice).toFixed(2),
+        change: parseFloat(item.priceChangePercent).toFixed(2) + "%"
+      };
+    });
+  }
+
+  async function fetchForexPrices() {
+    const results = [];
+    for (let f of forexPairs) {
+      const url = `https://api.exchangerate.host/latest?base=${f.base}&symbols=${f.target}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      results.push({
+        asset: `${f.base}/${f.target}`,
+        price: parseFloat(data.rates[f.target]).toFixed(2),
+        change: "-"
+      });
+    }
+    return results;
+  }
+
+  async function updatePriceTable() {
+    const crypto = await fetchCryptoPrices();
+    const forex = await fetchForexPrices();
+    const allData = [...crypto, ...forex];
+
+    const tbody = document.querySelector("#livePriceTable tbody");
+    tbody.innerHTML = "";
+    allData.forEach(item => {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${item.asset}</td><td>$${item.price}</td><td>${item.change}</td>`;
+      tbody.appendChild(row);
+    });
+  }
+
+  setInterval(updatePriceTable, 10000); // refresh every 10 sec
+  updatePriceTable();
+</script>
+
+
+<section>
+  <h2>Watchlist Interaktif</h2>
+  <form onsubmit="event.preventDefault(); addToWatchlist();">
+    <input type="text" id="watchSymbol" placeholder="Contoh: BTCUSDT atau EURUSD">
+    <button type="submit">Tambah ke Watchlist</button>
+  </form>
+  <ul id="watchlistContainer"></ul>
+</section>
+
+<script>
+  let watchlist = JSON.parse(localStorage.getItem("watchlist") || "[]");
+
+  function saveWatchlist() {
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+  }
+
+  function addToWatchlist() {
+    const symbol = document.getElementById("watchSymbol").value.toUpperCase();
+    if (!watchlist.includes(symbol)) {
+      watchlist.push(symbol);
+      saveWatchlist();
+      renderWatchlist();
+    }
+    document.getElementById("watchSymbol").value = "";
+  }
+
+  async function fetchWatchlistPrices() {
+    const binanceData = await fetch("https://api.binance.com/api/v3/ticker/price").then(r => r.json());
+    const forexData = await Promise.all(watchlist
+      .filter(sym => sym.length === 6 && isNaN(sym))
+      .map(async pair => {
+        const base = pair.substring(0, 3);
+        const target = pair.substring(3, 6);
+        const res = await fetch(`https://api.exchangerate.host/latest?base=${base}&symbols=${target}`);
+        const data = await res.json();
+        return { symbol: `${base}${target}`, price: data.rates[target] };
+      }));
+
+    const prices = [];
+    for (let symbol of watchlist) {
+      let crypto = binanceData.find(d => d.symbol === symbol);
+      if (crypto) {
+        prices.push({ symbol, price: parseFloat(crypto.price).toFixed(2) });
+        continue;
+      }
+      let forex = forexData.find(f => f.symbol === symbol);
+      if (forex) {
+        prices.push({ symbol, price: parseFloat(forex.price).toFixed(2) });
+      }
+    }
+
+    return prices;
+  }
+
+  async function renderWatchlist() {
+    const container = document.getElementById("watchlistContainer");
+    container.innerHTML = "<li>Memuat data harga...</li>";
+    const prices = await fetchWatchlistPrices();
+    container.innerHTML = "";
+    prices.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = `${item.symbol}: $${item.price}`;
+      container.appendChild(li);
+    });
+  }
+
+  setInterval(renderWatchlist, 10000);
+  renderWatchlist();
+</script>
+
+
+<section>
+  <h2>Price Alert / Peringatan Harga</h2>
+  <form onsubmit="event.preventDefault(); addPriceAlert();">
+    <input type="text" id="alertSymbol" placeholder="Contoh: BTCUSDT" required>
+    <input type="number" id="alertTarget" placeholder="Target Harga (USD)" required>
+    <button type="submit">Set Alert</button>
+  </form>
+  <ul id="alertList"></ul>
+</section>
+
+<script>
+  let alerts = JSON.parse(localStorage.getItem("priceAlerts") || "[]");
+
+  function saveAlerts() {
+    localStorage.setItem("priceAlerts", JSON.stringify(alerts));
+  }
+
+  function addPriceAlert() {
+    const symbol = document.getElementById("alertSymbol").value.toUpperCase();
+    const target = parseFloat(document.getElementById("alertTarget").value);
+    if (symbol && target && !alerts.some(a => a.symbol === symbol && a.target === target)) {
+      alerts.push({ symbol, target });
+      saveAlerts();
+      renderAlerts();
+    }
+    document.getElementById("alertSymbol").value = "";
+    document.getElementById("alertTarget").value = "";
+  }
+
+  function renderAlerts() {
+    const list = document.getElementById("alertList");
+    list.innerHTML = "";
+    alerts.forEach(alert => {
+      const li = document.createElement("li");
+      li.textContent = `${alert.symbol} → $${alert.target}`;
+      list.appendChild(li);
+    });
+  }
+
+  async function checkAlerts() {
+    const res = await fetch("https://api.binance.com/api/v3/ticker/price");
+    const data = await res.json();
+
+    alerts.forEach(alert => {
+      const item = data.find(d => d.symbol === alert.symbol);
+      if (item && parseFloat(item.price) >= alert.target && !alert.triggered) {
+        alert.triggered = true;
+        alertUser(alert.symbol, alert.target);
+        saveAlerts();
+      }
+    });
+  }
+
+  function alertUser(symbol, target) {
+    alert(`Harga ${symbol} telah mencapai $${target}!`);
+    // Bisa dikembangkan untuk notifikasi suara atau push
+  }
+
+  setInterval(checkAlerts, 10000);
+  renderAlerts();
+</script>
+
+</body>
+</html>
